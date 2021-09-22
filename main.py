@@ -1,4 +1,4 @@
-from AsyncScheduler import Scheduler, DelayedFunction
+from AsyncScheduler import Scheduler
 
 sched = Scheduler()
 
