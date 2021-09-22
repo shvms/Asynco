@@ -8,6 +8,9 @@ class QueueClosed(Exception):
   pass
 
 class Result:
+  """
+  Pack result -> Can be success or a failure
+  """
   def __init__(self, val=None, exc=None):
     self.__val = val
     self.__exc = exc
@@ -29,7 +32,7 @@ class AsyncQueue:
       raise QueueClosed()
     
     self.queue.append(val)
-    if self.waiting_gets:
+    if self.waiting_gets:     # ready to execute one of waiting get calls
       func = self.waiting_gets.popleft()
       self.sched.call_soon(func)
   
